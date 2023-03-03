@@ -23,7 +23,7 @@ SET SaleDateConverted = CONVERT(DATE, SaleDate)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
--- Rellenar datos dirección de la propiedad
+-- Rellenar datos direcciÃ³n de la propiedad
 
 SELECT *
 FROM Portfolio.dbo.NashvilleHousing
@@ -47,7 +47,7 @@ WHERE a.PropertyAddress IS NULL
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
--- Diviendo la dirección en columnas individuales
+-- Diviendo la direcciÃ³n en columnas individuales
 
 SELECT PropertyAddress
 FROM Portfolio.dbo.NashvilleHousing
@@ -69,9 +69,6 @@ ADD PropertySplitCity NVARCHAR(255);
 
 UPDATE NashvilleHousing
 SET PropertySplitCity = SUBSTRING(PropertyAddress, CHARINDEX(',', PropertyAddress) +1, LEN(PropertyAddress))
-
-SELECT *
-FROM Portfolio.dbo.NashvilleHousing
 
 SELECT OwnerAddress
 FROM Portfolio.dbo.NashvilleHousing
@@ -150,10 +147,7 @@ WHERE row_num > 1
 -- Borrar columnas no usadas
 
 ALTER TABLE Portfolio.dbo.NashvilleHousing
-DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress
+DROP COLUMN OwnerAddress, TaxDistrict, PropertyAddress, SaleDate
 
 SELECT *
 FROM Portfolio.dbo.NashvilleHousing
-
-ALTER TABLE Portfolio.dbo.NashvilleHousing
-DROP COLUMN SaleDate
