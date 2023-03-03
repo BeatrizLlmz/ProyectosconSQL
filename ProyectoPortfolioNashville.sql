@@ -3,6 +3,7 @@
 Limpieza de datos con SQL
 
 */
+/* Transformar el conjunto de datos sobre alojamientos en Nashville */
 --------------------------------------------------------------------------------------------------------------------------------------
 SELECT *
 FROM Portfolio.dbo.NashvilleHousing
@@ -23,7 +24,8 @@ SET SaleDateConverted = CONVERT(DATE, SaleDate)
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
--- Rellenar datos dirección de la propiedad
+-- Hay propiedades con la dirección vacía pero el mismo ParcelID que otra, por lo tanto la misma dirección, pero diferente UniqueID.
+-- Vamos a rellenar los datos faltantes con los datos que tenemos de las propiedades con mismo ParcelID y diferente UniqueID.
 
 SELECT *
 FROM Portfolio.dbo.NashvilleHousing
@@ -48,6 +50,7 @@ WHERE a.PropertyAddress IS NULL
 -----------------------------------------------------------------------------------------------------------------------------------
 
 -- Diviendo la dirección en columnas individuales
+-- Vamos a dividirla en tres columnas: dirección, ciudad y estado
 
 SELECT PropertyAddress
 FROM Portfolio.dbo.NashvilleHousing
